@@ -1,0 +1,66 @@
+
+<style>
+html,body{
+  width:100%;
+  height:100%;
+  margin:0px;
+}
+
+.wide {
+  width:100%;
+  height:150px;
+}
+.text{
+  color:#fff;
+  text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa;
+
+  font-size:8em;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align:center;
+
+}
+.fixed{
+  position:fixed;
+  left: 30px;
+  bottom: 40px;
+}
+</style>
+
+<div id="div_input" style="padding:40px">
+  <p>Type something you really mean.</p>
+  </p>
+  <input id="input_input"/>
+  <button id="truth_button" >Preach!</button>
+  <p class="fixed"><a href="https://www.github.com/DrewWeth">Drew</a> made this.</p>
+
+</div>
+
+<div class="wide" id="truth">
+</div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/trianglify/0.1.5/trianglify.js"></script>
+
+
+<script>
+  $('#truth_button').click(function(){
+    $('#div_input').hide();
+    var input_text = $('#input_input').val();
+    var count = 0;
+    setInterval(function(){
+      var t = new Trianglify();
+      var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
+      console.log(pattern);
+      $('#truth').prepend('<div class="wide" style="background-image: '+ pattern.dataUrl +'"><div class="text">' + input_text +'</div></div>');
+      count += 1;
+
+      if (count > 5)
+      {
+        $('.wide:last').remove();
+      }
+    }, 200);
+  });
+
+</script>

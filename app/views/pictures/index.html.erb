@@ -1,0 +1,85 @@
+
+<style>
+  html,body{
+    width:100%;
+    height:100%;
+    margin:0px;
+  }
+
+  .wide {
+    width:100%;
+    height:150px;
+  }
+  .text{
+    color:#fff;
+    text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa;
+
+    font-size:8em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+
+  }
+</style>
+<!--
+<h1>Listing pictures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Desc</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td><%= picture.name %></td>
+        <td><%= picture.desc %></td>
+        <td><img src="<%= picture.url %>"></a></td>
+        <td><%= link_to 'Show', picture %></td>
+        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
+        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Picture', new_picture_path %>
+
+<hr> -->
+<!--
+
+<button id="truth_button" >Preach The Truth</button> -->
+
+<div class="wide" id="truth">
+</div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/trianglify/0.1.5/trianglify.js"></script>
+
+
+<script>
+  $(document).ready(function(){
+    var count = 0;
+    setInterval(function(){
+      var t = new Trianglify();
+      var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
+      console.log(pattern);
+      $('#truth').prepend('<div class="wide" style="background-image: '+ pattern.dataUrl +'"><div class="text">Fuck Chemistry</div></div>');
+      count += 1;
+
+      if (count > 5)
+      {
+        $('.wide:last').remove();
+      }
+    }, 200);
+  });
+
+</script>
